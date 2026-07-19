@@ -38,6 +38,12 @@ Set only the keys for the providers you want to use. If none are set, the tools 
 
 ## Install
 
+```bash
+npx -y imagengen
+```
+
+Add it to your MCP client:
+
 ### Claude Code
 
 ```bash
@@ -70,37 +76,6 @@ Add to your MCP config file (e.g. `claude_desktop_config.json`):
     }
   }
 }
-```
-
-### Local development
-
-From this project directory:
-
-```bash
-npm install
-npm run build
-```
-
-Then point your MCP client at the built server directly:
-
-```json
-{
-  "mcpServers": {
-    "imagengen": {
-      "command": "node",
-      "args": ["/absolute/path/to/imagengen/dist/index.js"],
-      "env": {
-        "GEMINI_API_KEY": "your-gemini-key"
-      }
-    }
-  }
-}
-```
-
-Or with Claude Code:
-
-```bash
-claude mcp add imagengen -e GEMINI_API_KEY=your-gemini-key -- node /absolute/path/to/imagengen/dist/index.js
 ```
 
 ## Known limitations
