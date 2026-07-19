@@ -1,0 +1,34 @@
+{
+  "name": "imagengen",
+  "version": "0.1.0",
+  "description": "MCP server for generating and editing images via Gemini, Grok Image, and GPT-image, for clients (like Claude Code) with no native image generation capability.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danton721/imagengen.git"
+  },
+  "bin": {
+    "imagengen": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.20.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
