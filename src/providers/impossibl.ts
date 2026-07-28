@@ -12,7 +12,7 @@ const modelsCache = createTtlCache<ModelInfo[]>(MODEL_LIST_CACHE_TTL_MS);
 function authHeaders(): Record<string, string> {
     const key = API_KEYS.impossibl;
     if (!key) throw new Error('IMPOSSIBL_API_KEY is not set');
-    return { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' };
+    return { Authorization: `Bearer ${key}` };
 }
 
 async function fetchModelIdsFromApi(): Promise<string[]> {
@@ -49,7 +49,7 @@ function parseImageData(entry: any): GeneratedImage {
 async function generate(params: GenerateParams): Promise<GeneratedImage[]> {
     const res = await fetch(`${API_BASE}/images/generations`, {
         method: 'POST',
-        headers: authHeaders(),
+        headers: { ...authHeaders(), 'Content-Type': 'application/json' },
         body: JSON.stringify({
             model: params.model,
             prompt: params.prompt,
