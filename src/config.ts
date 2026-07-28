@@ -18,3 +18,5 @@ export const CONFIGURED_DEFAULT_PROVIDER: ProviderId | undefined =
 export const OUTPUT_DIR = path.resolve(process.env.IMAGE_OUTPUT_DIR || './output');
 
 export const MODEL_LIST_CACHE_TTL_MS = 60 * 60 * 1000;
+
+export const USER_AGENT = 'imagengen mcp library v0.2.1';
