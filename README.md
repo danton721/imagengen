@@ -1,6 +1,6 @@
 # imagengen
 
-> **[impossibl.com](https://impossibl.com/?utm_source=imagengen-npm)** — a router for multiple AI models. Test it out with a free $1 account.
+> **[impossibl.com](https://impossibl.com/?utm_source=imagengen-npm)** — a router for multiple AI models. Test it out with a free $3 account.
 >
 > **[ip2.app](https://ip2.app/?utm_source=imagengen-npm)** — develop your custom projects and publish.
 

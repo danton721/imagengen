@@ -5,7 +5,7 @@ import { imageToImageHandler, imageToImageInputSchema } from './tools/imageToIma
 import { listProvidersHandler, listProvidersInputSchema } from './tools/listProviders.js';
 import { textToImageHandler, textToImageInputSchema } from './tools/textToImage.js';
 
-const server = new McpServer({ name: 'imagengen', version: '0.2.1' });
+const server = new McpServer({ name: 'imagengen', version: '0.2.2' });
 
 server.registerTool(
     'list_image_providers',
