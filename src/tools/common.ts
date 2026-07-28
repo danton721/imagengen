@@ -30,7 +30,7 @@ function describeResolutionFailure(result: Exclude<ResolveResult, { ok: true }>)
             return jsonError({
                 error: 'no_provider_configured',
                 instructions:
-                    'No image provider API key is configured. Set one of GEMINI_API_KEY, XAI_API_KEY, or OPENAI_API_KEY ' +
+                    'No image provider API key is configured. Set one of GEMINI_API_KEY, XAI_API_KEY, OPENAI_API_KEY, or IMPOSSIBL_API_KEY ' +
                     'as an environment variable for this MCP server.'
             });
         case 'not_configured':
