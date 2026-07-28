@@ -28,7 +28,7 @@ Set only the keys for the providers you want to use. If none are set, the tools 
 ### Choosing a default provider
 
 - If exactly **one** API key is set, it's used automatically.
-- If **more than one** is set, set `IMAGE_PROVIDER_DEFAULT` to `gemini`, `grok`, or `gpt-image` to avoid being asked every time.
+- If **more than one** is set, set `IMAGE_PROVIDER_DEFAULT` to `gemini`, `grok`, `gpt-image`, or `impossibl` to avoid being asked every time.
 - If more than one key is set and `IMAGE_PROVIDER_DEFAULT` is not set, the tools return a `needs_provider_choice` response — Claude Code is instructed (via the tool descriptions) to check its memory for a previously stated preference, or otherwise ask you, then retry with the `provider` argument.
 
 ### Other configuration
