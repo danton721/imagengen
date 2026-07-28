@@ -7,15 +7,19 @@ export const imageToImageInputSchema = {
     input_images: z
         .array(z.string())
         .min(1)
-        .describe('One or more input images, each as a local file path or a data: URI. Grok supports 1 image per call; Gemini and GPT-image support multiple.'),
+        .describe(
+            'One or more input images, each as a local file path or a data: URI. Grok supports 1 image per call; ' +
+                'Gemini and GPT-image support multiple. impossibl.com does not support image editing at all — do not ' +
+                'select it for this tool.'
+        ),
     provider: z
-        .enum(['gemini', 'grok', 'gpt-image'])
+        .enum(['gemini', 'grok', 'gpt-image', 'impossibl'])
         .optional()
         .describe(
             'Which image provider to use. REQUIRED when more than one of GEMINI_API_KEY / XAI_API_KEY / ' +
-                'OPENAI_API_KEY is configured and IMAGE_PROVIDER_DEFAULT is not set. In that case: first check your ' +
-                'memory for a stored user preference for a default image provider; if there is none, ask the user ' +
-                'which provider to use before calling this tool, then remember their answer for future calls.'
+                'OPENAI_API_KEY / IMPOSSIBL_API_KEY is configured and IMAGE_PROVIDER_DEFAULT is not set. In that case: ' +
+                'first check your memory for a stored user preference for a default image provider; if there is none, ' +
+                'ask the user which provider to use before calling this tool, then remember their answer for future calls.'
         ),
     model: z
         .string()

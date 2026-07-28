@@ -12,7 +12,7 @@ server.registerTool(
     {
         title: 'List image providers',
         description:
-            'Lists which image providers (gemini, grok, gpt-image) are configured via API key, their available ' +
+            'Lists which image providers (gemini, grok, gpt-image, impossibl) are configured via API key, their available ' +
             'models (discovered live from each provider), and which provider/model would be used by default.',
         inputSchema: listProvidersInputSchema
     },
@@ -23,7 +23,7 @@ server.registerTool(
     'text-to-image',
     {
         title: 'Generate image from text',
-        description: 'Generates an image from a text prompt using Gemini, Grok Image, or GPT-image, and saves it to disk.',
+        description: 'Generates an image from a text prompt using Gemini, Grok Image, GPT-image, or impossibl.com, and saves it to disk.',
         inputSchema: textToImageInputSchema
     },
     textToImageHandler
@@ -35,7 +35,7 @@ server.registerTool(
         title: 'Edit image from text + input image(s)',
         description:
             'Edits or transforms one or more input images according to a text prompt, using Gemini, Grok Image, ' +
-            'or GPT-image, and saves the result to disk.',
+            'or GPT-image, and saves the result to disk. (impossibl.com does not support this tool.)',
         inputSchema: imageToImageInputSchema
     },
     imageToImageHandler
