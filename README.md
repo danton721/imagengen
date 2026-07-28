@@ -1,6 +1,6 @@
 # imagengen
 
-An MCP server that generates and edits images via **Gemini** (Nano Banana), **Grok Image**, and **GPT-image**, for MCP clients — like Claude Code — that have no native image generation capability.
+An MCP server that generates and edits images via **Gemini** (Nano Banana), **Grok Image**, **GPT-image**, and **impossibl.com**, for MCP clients — like Claude Code — that have no native image generation capability.
 
 - Model lists are **discovered live** from each provider's API, not hardcoded, so new models show up automatically.
 - Defaults to each provider's newest non-top-tier model and a non-maximum quality setting, so a plain "generate an image" request doesn't silently pick the most expensive option.
@@ -21,13 +21,14 @@ An MCP server that generates and edits images via **Gemini** (Nano Banana), **Gr
 | Gemini | `GEMINI_API_KEY` | Nano Banana family, e.g. `gemini-3.1-flash-image`, `gemini-3-pro-image`, `gemini-2.5-flash-image` |
 | Grok Image | `XAI_API_KEY` | `grok-imagine-image`, `grok-imagine-image-quality` |
 | GPT-image | `OPENAI_API_KEY` | `gpt-image-2`, `gpt-image-1.5`, `gpt-image-1`, `gpt-image-1-mini` |
+| impossibl.com | `IMPOSSIBL_API_KEY` | `openai/gpt-image-2` (generation only — see Known limitations) |
 
 Set only the keys for the providers you want to use. If none are set, the tools return a clear `no_provider_configured` error.
 
 ### Choosing a default provider
 
 - If exactly **one** API key is set, it's used automatically.
-- If **more than one** is set, set `IMAGE_PROVIDER_DEFAULT` to `gemini`, `grok`, or `gpt-image` to avoid being asked every time.
+- If **more than one** is set, set `IMAGE_PROVIDER_DEFAULT` to `gemini`, `grok`, `gpt-image`, or `impossibl` to avoid being asked every time.
 - If more than one key is set and `IMAGE_PROVIDER_DEFAULT` is not set, the tools return a `needs_provider_choice` response — Claude Code is instructed (via the tool descriptions) to check its memory for a previously stated preference, or otherwise ask you, then retry with the `provider` argument.
 
 ### Other configuration
@@ -51,6 +52,7 @@ claude mcp add imagengen \
   -e GEMINI_API_KEY=your-gemini-key \
   -e XAI_API_KEY=your-xai-key \
   -e OPENAI_API_KEY=your-openai-key \
+  -e IMPOSSIBL_API_KEY=your-impossibl-key \
   -e IMAGE_PROVIDER_DEFAULT=gemini \
   -- npx -y imagengen
 ```
@@ -71,6 +73,7 @@ Add to your MCP config file (e.g. `claude_desktop_config.json`):
         "GEMINI_API_KEY": "your-gemini-key",
         "XAI_API_KEY": "your-xai-key",
         "OPENAI_API_KEY": "your-openai-key",
+        "IMPOSSIBL_API_KEY": "your-impossibl-key",
         "IMAGE_PROVIDER_DEFAULT": "gemini"
       }
     }
@@ -82,6 +85,7 @@ Add to your MCP config file (e.g. `claude_desktop_config.json`):
 
 - Grok image edits currently support one input image per call (the documented request shape takes a single `image` field).
 - The Gemini provider talks to Google's newer "Interactions" image API (`/v1beta/interactions`); if Google adjusts that response shape, `src/providers/gemini.ts` may need a small update.
+- impossibl.com only supports text-to-image generation, not editing. Its `/v1/images/edits` endpoint does not exist (404), and passing an `image` field to `/v1/images/generations` is silently ignored rather than performing an edit. Calling `image-to-image` with `provider: "impossibl"` returns a clear error.
 
 ## License
 

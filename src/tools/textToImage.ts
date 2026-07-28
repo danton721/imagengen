@@ -5,13 +5,13 @@ import { handlerError, isToolTextContent, resolveTarget } from './common.js';
 export const textToImageInputSchema = {
     prompt: z.string().describe('Text description of the image to generate.'),
     provider: z
-        .enum(['gemini', 'grok', 'gpt-image'])
+        .enum(['gemini', 'grok', 'gpt-image', 'impossibl'])
         .optional()
         .describe(
             'Which image provider to use. REQUIRED when more than one of GEMINI_API_KEY / XAI_API_KEY / ' +
-                'OPENAI_API_KEY is configured and IMAGE_PROVIDER_DEFAULT is not set. In that case: first check your ' +
-                'memory for a stored user preference for a default image provider; if there is none, ask the user ' +
-                'which provider to use before calling this tool, then remember their answer for future calls.'
+                'OPENAI_API_KEY / IMPOSSIBL_API_KEY is configured and IMAGE_PROVIDER_DEFAULT is not set. In that case: ' +
+                'first check your memory for a stored user preference for a default image provider; if there is none, ' +
+                'ask the user which provider to use before calling this tool, then remember their answer for future calls.'
         ),
     model: z
         .string()

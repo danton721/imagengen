@@ -2,12 +2,14 @@ import { ALL_PROVIDER_IDS, CONFIGURED_DEFAULT_PROVIDER, type ProviderId } from '
 import { geminiProvider } from './gemini.js';
 import { grokProvider } from './grok.js';
 import { gptImageProvider } from './gptImage.js';
+import { impossiblProvider } from './impossibl.js';
 import type { ImageProvider } from './types.js';
 
 export const PROVIDERS: Record<ProviderId, ImageProvider> = {
     gemini: geminiProvider,
     grok: grokProvider,
-    'gpt-image': gptImageProvider
+    'gpt-image': gptImageProvider,
+    impossibl: impossiblProvider
 };
 
 export function configuredProviderIds(): ProviderId[] {

@@ -1,13 +1,14 @@
 import path from 'node:path';
 
-export type ProviderId = 'gemini' | 'grok' | 'gpt-image';
+export type ProviderId = 'gemini' | 'grok' | 'gpt-image' | 'impossibl';
 
-export const ALL_PROVIDER_IDS: ProviderId[] = ['gemini', 'grok', 'gpt-image'];
+export const ALL_PROVIDER_IDS: ProviderId[] = ['gemini', 'grok', 'gpt-image', 'impossibl'];
 
 export const API_KEYS: Record<ProviderId, string | undefined> = {
     gemini: process.env.GEMINI_API_KEY,
     grok: process.env.XAI_API_KEY,
-    'gpt-image': process.env.OPENAI_API_KEY
+    'gpt-image': process.env.OPENAI_API_KEY,
+    impossibl: process.env.IMPOSSIBL_API_KEY
 };
 
 const rawDefault = process.env.IMAGE_PROVIDER_DEFAULT?.trim().toLowerCase();
