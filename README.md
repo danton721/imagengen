@@ -1,5 +1,7 @@
 # imagengen
 
+> **[impossibl.com](https://impossibl.com/?utm_source=imagengen-npm)** — a router for multiple AI models. Test it out with a free $1 account.
+
 An MCP server that generates and edits images via **Gemini** (Nano Banana), **Grok Image**, **GPT-image**, and **impossibl.com**, for MCP clients — like Claude Code — that have no native image generation capability.
 
 - Model lists are **discovered live** from each provider's API, not hardcoded, so new models show up automatically.

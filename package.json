@@ -1,6 +1,6 @@
 {
   "name": "imagengen",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "MCP server for generating and editing images via Gemini (Nano Banana), Grok Image, GPT-image, and impossibl.com, for clients (like Claude Code) with no native image generation capability.",
   "type": "module",
   "license": "MIT",

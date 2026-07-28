@@ -1,4 +1,4 @@
-import { API_KEYS, MODEL_LIST_CACHE_TTL_MS } from '../config.js';
+import { API_KEYS, MODEL_LIST_CACHE_TTL_MS, USER_AGENT } from '../config.js';
 import { createTtlCache } from './cache.js';
 import { pickDefaultModel } from './heuristics.js';
 import type { EditParams, GenerateParams, GeneratedImage, ImageProvider, ModelInfo } from './types.js';
@@ -28,7 +28,7 @@ async function fetchModelIdsFromApi(): Promise<string[]> {
         url.searchParams.set('pageSize', '200');
         if (pageToken) url.searchParams.set('pageToken', pageToken);
 
-        const res = await fetch(url, { headers: { 'x-goog-api-key': apiKey() } });
+        const res = await fetch(url, { headers: { 'x-goog-api-key': apiKey(), 'User-Agent': USER_AGENT } });
         if (!res.ok) throw new Error(`Gemini models.list failed: ${res.status} ${await res.text()}`);
         const body: any = await res.json();
 
@@ -93,7 +93,7 @@ function extractImages(body: any): GeneratedImage[] {
 async function callInteractions(model: string, input: unknown[], size?: string, aspectRatio?: string): Promise<GeneratedImage[]> {
     const res = await fetch(`${API_BASE}/interactions`, {
         method: 'POST',
-        headers: { 'x-goog-api-key': apiKey(), 'Content-Type': 'application/json' },
+        headers: { 'x-goog-api-key': apiKey(), 'Content-Type': 'application/json', 'User-Agent': USER_AGENT },
         body: JSON.stringify({
             model,
             input,

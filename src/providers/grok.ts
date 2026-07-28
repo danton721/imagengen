@@ -1,4 +1,4 @@
-import { API_KEYS, MODEL_LIST_CACHE_TTL_MS } from '../config.js';
+import { API_KEYS, MODEL_LIST_CACHE_TTL_MS, USER_AGENT } from '../config.js';
 import { createTtlCache } from './cache.js';
 import { pickDefaultModel } from './heuristics.js';
 import type { EditParams, GenerateParams, GeneratedImage, ImageProvider, ModelInfo } from './types.js';
@@ -15,7 +15,7 @@ const modelsCache = createTtlCache<ModelInfo[]>(MODEL_LIST_CACHE_TTL_MS);
 function authHeaders(): Record<string, string> {
     const key = API_KEYS.grok;
     if (!key) throw new Error('XAI_API_KEY is not set');
-    return { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' };
+    return { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json', 'User-Agent': USER_AGENT };
 }
 
 async function fetchModelIdsFromApi(): Promise<string[]> {
